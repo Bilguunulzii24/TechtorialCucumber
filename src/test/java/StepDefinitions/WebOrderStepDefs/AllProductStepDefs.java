@@ -1,0 +1,28 @@
+package StepDefinitions.WebOrderStepDefs;
+
+import Page.WebOrderPage.AllProductsPage;
+import Page.WebOrderPage.HomePage;
+import io.cucumber.java.en.Then;
+import org.junit.Assert;
+
+import java.util.List;
+
+public class AllProductStepDefs {
+
+    HomePage homePage = new HomePage();
+    AllProductsPage allProductsPage = new AllProductsPage();
+    @Then("the user click view all products button")
+    public void the_user_click_view_all_products_button() {
+        homePage.viewAllProductsBtn.click();
+    }
+
+    @Then("the user validate product table")
+    public void the_user_validate_product_table() {
+        List<String> actualList = allProductsPage.getProductList();
+        List<String> expectedList = allProductsPage.expected();
+
+        Assert.assertTrue(actualList.containsAll(expectedList));
+
+
+    }
+}
